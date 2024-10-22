@@ -1,0 +1,17 @@
+# Use Python 3.9-slim as the base image
+FROM python:3.9-slim
+
+# Set the working directory
+WORKDIR /app
+
+# Copy all the application files into the container
+COPY . /app
+
+# Install dependencies with correct TensorFlow and NumPy versions
+RUN pip install --no-cache-dir Flask==2.2.3 Werkzeug==2.2.3 tensorflow==2.10.0 numpy==1.21.6 pyyaml
+
+# Expose the port for the Flask app
+EXPOSE 5001
+
+# Command to run the application
+CMD ["python", "service_a.py"]

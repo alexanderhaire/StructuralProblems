@@ -1,0 +1,23 @@
+services:
+  service_a:
+    build:
+      context: ./microservices/service_a
+      dockerfile: Dockerfile.service_a
+    ports:
+      - "5001:5001"
+    environment:
+      - FLASK_DEBUG=0
+    restart: always
+
+  service_b:
+    build:
+      context: ./microservices/service_b
+      dockerfile: Dockerfile.service_b
+    ports:
+      - "5002:5002"
+    depends_on:
+      - service_a
+    environment:
+      - FLASK_DEBUG=0
+    restart: always
+
